@@ -41,8 +41,8 @@ realistic models of rough particles for SERS. It generates random:
 
 Each randomization can be turned on/off.
 
-Two randomization schemes are available, with and without seed, for reproducibility (or 
-not) of the same random sequence.
+Two randomization schemes are available, with and without seed, for reproducibility 
+(or not) of the same random sequence.
 
 ----------------
 2. SlabDDscat
