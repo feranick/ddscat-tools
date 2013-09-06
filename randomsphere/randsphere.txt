@@ -1,0 +1,30 @@
+# output file: (1: target for ddscat) (0: coordinates only)
+1
+# Randomization routine (1: NO SEED - repeatable) (0: RANDOM)
+1
+# Include center large sphere (1: YES; 0: NO)
+1
+# composition of center sphere
+1
+# composition of small spheres
+1
+# x coordinate (center of the large sphere)
+0
+# y coordinate (center of the large sphere)
+0
+# z coordinate (center of the large sphere)
+0
+# Radius of the large sphere
+1.0
+# number of small spheres
+600
+# Minimum radius of small spheres
+.05
+# Maximum radius of small spheres
+0.2
+# Maximum offset in position of center of small spheres from the surface of large sphere
+0.01
+# Randomize composition of small spheres (1: YES; 0: NO)
+0
+# Max number of random compositions for small spheres
+3

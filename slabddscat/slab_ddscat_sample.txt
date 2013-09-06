@@ -1,0 +1,36 @@
+# output file: (1: target for ddscat) (0: coordinates only)
+1
+# number of layers
+2
+# composition - layer 1
+1
+# x - layer 1
+1.5
+# ymin - layer 1
+-2
+# ymax - layer 1
+2
+# zmin - layer 1
+-2
+# zmax - layer 1
+2
+# radius - layer 1
+0.5
+# precision - layer 1
+0.1
+# composition - layer 2
+1
+# x - layer 2
+2.5
+# ymin - layer 2
+-2
+# ymax - layer 2
+2
+# zmin - layer 2
+-2
+# zmax - layer 2
+2
+# radius - layer 2
+0.5
+# precision - layer 2
+0.1
