@@ -2,7 +2,7 @@
 //
 //		randomsphere
 //
-//		v. 2.1-20130906
+//		v. 2.3-20130907
 //
 //		2013 - Nicola Ferralis - ferralis@mit.edu
 //
@@ -25,7 +25,6 @@
 //
 //******************************************************************************
 
-
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
@@ -46,7 +45,7 @@ int rsig();
 
 
 
-char version[]="2.1-20130906";
+char version[]="2.3-20130907";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="randsphere.txt";
@@ -182,15 +181,15 @@ int operate(char *namein)
     infile.close();
     
     char* outname;
+    outname=(char *) calloc(strlen(namein)+1,sizeof(char));
+    
     
     if(targfile==false) {
-        outname=strcat(extension,namein);
+        sprintf(outname,"%s%s",extension,namein);
     }
     
     else {
-        char tempname[100];
-        strncpy(tempname, namein,strlen(namein)-4);
-        outname=strcat(tempname,extensiontarg);
+        sprintf(outname, "%.*s%s", (int)  strlen(namein)-4, namein,extensiontarg);
     }
         
     
@@ -245,6 +244,7 @@ int operate(char *namein)
   
  
     cout<<"\n Saved in: "<<outname;
+    free(outname);
 
     if(LS==false)
         {cout<<"\n\n Number of random spheres created: "<<numSS<<"\n\n";}

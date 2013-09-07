@@ -2,7 +2,7 @@
 //
 //		slabddscat
 //
-//		v. 3.3-20130906
+//		v. 3.5-20130907
 //
 //		2013 - Nicola Ferralis - ferralis@mit.edu
 //
@@ -41,10 +41,10 @@ using namespace std;
 int operate(char *namein);
 void createNew();
 
-char version[]="3.3-201300906";
+char version[]="3.5-20130907";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
-char nameout[]="slab_ddscat_sample.txt";
+char nameout[]="slab_ddscat.txt";
 
 
 int main(int argc, char *argv[])
@@ -147,16 +147,16 @@ int operate(char *namein)
     infile.close();
     
     char* outname;
-    
+    outname=(char *) calloc(strlen(namein)+1,sizeof(char));
+
+
     if(targfile==false) {
-        outname=strcat(extension,namein);
-    }
+        sprintf(outname,"%s%s",extension,namein);
+        }
     
     else {
-        char tempname[100];
-        strncpy(tempname, namein,strlen(namein)-4);
-        outname=strcat(tempname,extensiontarg);
-    }
+        sprintf(outname, "%.*s%s", (int)  strlen(namein)-4, namein,extensiontarg);
+        }
         
     
     ofstream outfile(outname);
@@ -187,9 +187,11 @@ int operate(char *namein)
 
 
     outfile.close();
-  
+
  
     cout<<"\n Saved in: "<<outname;
+
+	free(outname);
 
     cout<<"\n\n Number of spheres included slab saved: "<<numSpheres<<"\n\n";
 return 0;}
