@@ -2,7 +2,7 @@
 //
 //		randomsphere
 //
-//		v. 2.0-20130906
+//		v. 2.1-20130906
 //
 //		2013 - Nicola Ferralis - ferralis@mit.edu
 //
@@ -46,7 +46,7 @@ int rsig();
 
 
 
-char version[]="2.0-20130906";
+char version[]="2.1-20130906";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="randsphere.txt";
@@ -188,11 +188,9 @@ int operate(char *namein)
     }
     
     else {
-        char *tempname;
-        tempname=(char *)malloc(sizeof(char[100]));
+        char tempname[100];
         strncpy(tempname, namein,strlen(namein)-4);
         outname=strcat(tempname,extensiontarg);
-        free(tempname);
     }
         
     
