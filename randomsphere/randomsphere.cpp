@@ -2,7 +2,7 @@
 //
 //		randomsphere
 //
-//		v. 2.3-20130907
+//		v. 2.5-20130908
 //
 //		2013 - Nicola Ferralis - ferralis@mit.edu
 //
@@ -45,7 +45,7 @@ int rsig();
 
 
 
-char version[]="2.3-20130907";
+char version[]="2.5-20130908";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="randsphere.txt";
@@ -180,9 +180,7 @@ int operate(char *namein)
 
     infile.close();
     
-    char* outname;
-    outname=(char *) calloc(strlen(namein)+1,sizeof(char));
-    
+    char* outname = new char[strlen(namein)+1];    
     
     if(targfile==false) {
         sprintf(outname,"%s%s",extension,namein);
@@ -244,7 +242,7 @@ int operate(char *namein)
   
  
     cout<<"\n Saved in: "<<outname;
-    free(outname);
+    delete outname;
 
     if(LS==false)
         {cout<<"\n\n Number of random spheres created: "<<numSS<<"\n\n";}
