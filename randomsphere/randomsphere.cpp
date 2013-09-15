@@ -2,7 +2,7 @@
 //
 //		randomsphere
 //
-//		v. 2.5-20130908
+//		v. 3.0-201309014
 //
 //		2013 - Nicola Ferralis - ferralis@mit.edu
 //
@@ -45,7 +45,7 @@ int rsig();
 
 
 
-char version[]="2.5-20130908";
+char version[]="3.0-20130915";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="randsphere.txt";
@@ -75,8 +75,8 @@ int main(int argc, char *argv[])
 int operate(char *namein)
 
 {       
-    double xLS, yLS, zLS, RSSmin, RSSmax, RLS, numSS, maxExt = 0.0;
-    int compLS, compSS, maxRandComp = 1;
+    double xLS, yLS, zLS, RSSmin, RSSmax, RLS, numSS, maxExt, minExt= 0.0;
+    int compLS, compSS, maxRandComp, Ext = 1;
     bool targfile, LS= true;
     bool randComp = false;
     
@@ -140,6 +140,14 @@ int operate(char *namein)
     
             getline(infile, line);
             getline(infile, line);
+            Ext=atof(line.c_str());
+    
+            getline(infile, line);
+            getline(infile, line);
+            minExt=atof(line.c_str());
+    
+            getline(infile, line);
+            getline(infile, line);
             maxExt=atof(line.c_str());
     
             getline(infile, line);
@@ -162,7 +170,7 @@ int operate(char *namein)
     else {
         cout<<"\n Randomization routine: with SEED \n";}
     
-    cout<<"\n compLS\tsaveLS\tcompSS\txLS\tyLS\tzLS\tRLS\tRSSmin\tRSSmax\tmaxExt\tnumSS\n";
+    cout<<"\n cLS\tsaveLS\tcSS\txLS\tyLS\tzLS\tRLS\tRSSmin\tRSSmax\tExt-min-max\tnumSS\n";
     
     
     cout<<" "<<compLS<<"\t"<<LS<<"\t";
@@ -174,7 +182,7 @@ int operate(char *namein)
         }
     
     cout<<xLS<<"\t"<<yLS<<"\t"<<zLS;
-    cout<<"\t"<<RLS<<"\t"<<RSSmin<<"\t"<<RSSmax<<"\t"<<maxExt<<"\t"<<numSS<<"\n";
+    cout<<"\t"<<RLS<<"\t"<<RSSmin<<"\t"<<RSSmax<<"\t"<<Ext<<"-"<<minExt<<"-"<<maxExt<<"\t"<<numSS<<"\n";
     
     
 
@@ -214,15 +222,23 @@ int operate(char *namein)
     int nSS=0;
     while(nSS <numSS){
         
-        double x, y, z, x1, y1, z1, R = 0.0;
+        double x, y, z, x1, y1, z1, R, offset = 0.0;
         
         x=random(1)*rsig();
         y=random(sqrt(1-pow(x,2)))*rsig();
         z=sqrt(1-pow(x,2)-pow(y,2))*rsig();
         
-        x1=(x*RLS+xLS)+maxExt*rsig();
-        y1=(y*RLS+xLS)+maxExt*rsig();
-        z1=(z*RLS+xLS)+maxExt*rsig();
+        if(Ext==1)
+        {offset=minExt;}
+        
+        if(Ext==2)
+            {while (offset<minExt)
+                {offset=random(maxExt);}
+            }
+        
+        x1=(x*RLS+xLS)+offset*rsig();
+        y1=(y*RLS+xLS)+offset*rsig();
+        z1=(z*RLS+xLS)+offset*rsig();
         R=RSSmin+random(RSSmax-RSSmin);
         
 
@@ -257,16 +273,18 @@ void createNew(){
     outfile<<"# output file: (1: target for ddscat) (0: coordinates only)\n1\n";
     outfile<<"# Randomization routine (1: NO SEED - repeatable) (0: RANDOM)\n1\n";
     outfile<<"# Include center large sphere (1: YES; 0: NO)\n1\n";
-    outfile<<"# composition of center sphere\n1\n";
-    outfile<<"# composition of small spheres\n1\n";
-    outfile<<"# x coordinate (center of the large sphere)\n0\n";
-    outfile<<"# y coordinate (center of the large sphere)\n0\n";
-    outfile<<"# z coordinate (center of the large sphere)\n0\n";
-    outfile<<"# Radius of the large sphere\n1.0\n";
-    outfile<<"# number of small spheres\n600\n";
-    outfile<<"# Minimum radius of small spheres\n.05\n";
-    outfile<<"# Maximum radius of small spheres\n0.2\n";
-    outfile<<"# Maximum offset in position of center of small spheres from the surface of large sphere\n0.01\n";
+    outfile<<"# composition of center large sphere (LS)\n1\n";
+    outfile<<"# composition of small spheres (SS)\n1\n";
+    outfile<<"# x coordinate (center of the large sphere - LS)\n0\n";
+    outfile<<"# y coordinate (center of the large sphere - LS)\n0\n";
+    outfile<<"# z coordinate (center of the large sphere - LS)\n0\n";
+    outfile<<"# Radius of the large sphere (LS)\n1.0\n";
+    outfile<<"# number of small spheres (SS)\n600\n";
+    outfile<<"# Minimum radius of small spheres (SS)\n.05\n";
+    outfile<<"# Maximum radius of small spheres(SS)\n0.2\n";
+    outfile<<"# Offset center of SS from the surface of LS (1: YES, 2: random, 0: NO)\n1\n";
+    outfile<<"# Min offset in position of center of SS from the surface of LS\n0.01\n";
+    outfile<<"# Maximum offset in position of center of SS from the surface of LS\n0.05\n";
     outfile<<"# Randomize composition of small spheres (1: YES; 0: NO)\n0\n";
     outfile<<"# Max number of random compositions for small spheres\n3\n";
     

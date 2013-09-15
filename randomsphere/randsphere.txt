@@ -4,27 +4,31 @@
 1
 # Include center large sphere (1: YES; 0: NO)
 1
-# composition of center sphere
+# composition of center large sphere (LS)
 1
-# composition of small spheres
+# composition of small spheres (SS)
 1
-# x coordinate (center of the large sphere)
+# x coordinate (center of the large sphere - LS)
 0
-# y coordinate (center of the large sphere)
+# y coordinate (center of the large sphere - LS)
 0
-# z coordinate (center of the large sphere)
+# z coordinate (center of the large sphere - LS)
 0
-# Radius of the large sphere
+# Radius of the large sphere (LS)
 1.0
-# number of small spheres
+# number of small spheres (SS)
 600
-# Minimum radius of small spheres
+# Minimum radius of small spheres (SS)
 .05
-# Maximum radius of small spheres
+# Maximum radius of small spheres (SS)
 0.2
-# Maximum offset in position of center of small spheres from the surface of large sphere
+# Offset center of SS from the surface of LS (1: YES, 2: random, 0: NO)
+2
+# Min offset in position of center of SS from the surface of LS
 0.01
+# Maximum offset in position of center of SS from the surface of LS
+0.05
 # Randomize composition of small spheres (1: YES; 0: NO)
 0
-# Max number of random compositions for small spheres
+# Max number of random compositions for small spheres (SS)
 3

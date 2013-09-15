@@ -1,5 +1,5 @@
 ==========================
-DDSCAT-tools (2013.09.12)
+DDSCAT-tools (2013.09.15)
 ==========================
 
 Utilities for the Discrete Dipole Approximation method implemented in the software DDSCAT:
@@ -37,6 +37,8 @@ Generates random spheres on the surface of a larger sphere. Produces realistic m
 Each randomization can be turned on/off.
 
 Two randomization schemes are available, with and without seed, for reproducibility (or not) of the same random sequence.
+
+Starting from version 3.0, compatibility with previous version is broken. A more sophisticated handling of the extended offset (fixed offset or randomized within range) required a new input file. However, older input file can be easily changed to work on the new version.
 
 ----------------
 2. SlabDDscat
