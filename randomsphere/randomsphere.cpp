@@ -2,7 +2,7 @@
 //
 //		randomsphere
 //
-//		v. 3.0-201309014
+//		v. 3.5-201309016
 //
 //		2013 - Nicola Ferralis - ferralis@mit.edu
 //
@@ -45,12 +45,12 @@ int rsig();
 
 
 
-char version[]="3.0-20130915";
+char version[]="3.5-20130916";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="randsphere.txt";
 bool randType=true;
-
+bool sigExt=false;
 
 int main(int argc, char *argv[])
 {
@@ -149,6 +149,10 @@ int operate(char *namein)
             getline(infile, line);
             getline(infile, line);
             maxExt=atof(line.c_str());
+    
+            getline(infile, line);
+            getline(infile, line);
+            sigExt=atof(line.c_str());
     
             getline(infile, line);
             getline(infile, line);
@@ -285,6 +289,7 @@ void createNew(){
     outfile<<"# Offset center of SS from the surface of LS (1: YES, 2: random, 0: NO)\n1\n";
     outfile<<"# Min offset in position of center of SS from the surface of LS\n0.01\n";
     outfile<<"# Maximum offset in position of center of SS from the surface of LS\n0.05\n";
+    outfile<<"# Randomize sign of offset? (1: YES, 0: NO)\n0\n";
     outfile<<"# Randomize composition of small spheres (1: YES; 0: NO)\n0\n";
     outfile<<"# Max number of random compositions for small spheres\n3\n";
     
@@ -303,14 +308,16 @@ double random(double MaxValue)
 }
 
 int rsig()
-{   
-    if(randType==false)
-        {srand(time(0));}
-    
-    
-	double b= ((double)rand() / ((double)(RAND_MAX)+(double)(1)));
-    if (b<0.5)
-        {return -1;}
+{   if(sigExt==true)
+        {
+            if(randType==false)
+                {srand(time(0));}
+            double b= ((double)rand() / ((double)(RAND_MAX)+(double)(1)));
+            if (b<0.5)
+                {return -1;}
+            else
+                return 1;
+        }
     else
-        return 1;
+        {return 1;}
 }

@@ -1,5 +1,5 @@
 ==========================
-DDSCAT-tools (2013.09.15)
+DDSCAT-tools (2013.09.16)
 ==========================
 
 Utilities for the Discrete Dipole Approximation method implemented in the software DDSCAT:
@@ -38,7 +38,7 @@ Each randomization can be turned on/off.
 
 Two randomization schemes are available, with and without seed, for reproducibility (or not) of the same random sequence.
 
-Starting from version 3.0, compatibility with previous version is broken. A more sophisticated handling of the extended offset (fixed offset or randomized within range) required a new input file. However, older input file can be easily changed to work on the new version.
+Starting from version 3.5, compatibility with previous version is broken. A more sophisticated handling of the extended offset (fixed offset or randomized within range) required a new input file. However, older input file can be easily changed to work on the new version.
 
 ----------------
 2. SlabDDscat
