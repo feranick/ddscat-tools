@@ -2,7 +2,7 @@
 //
 //		randomsphere
 //
-//		v. 3.5-201309016
+//		v. 3.8-201309017
 //
 //		2013 - Nicola Ferralis - ferralis@mit.edu
 //
@@ -41,11 +41,11 @@ using namespace std;
 int operate(char *namein);
 void createNew();
 double random(double MaxValue);
-int rsig();
+int rsig(bool a);
 
 
 
-char version[]="3.5-20130916";
+char version[]="3.8-20130917-beta";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="randsphere.txt";
@@ -96,6 +96,9 @@ int operate(char *namein)
     getline(infile, line);
     getline(infile, line);
     randType=(bool) atof(line.c_str());
+    
+    if(randType==false)
+        {srand(time(NULL));}
     
     getline(infile, line);
     getline(infile, line);
@@ -226,23 +229,59 @@ int operate(char *namein)
     int nSS=0;
     while(nSS <numSS){
         
-        double x, y, z, x1, y1, z1, R, offset = 0.0;
+        double x1, y1, z1, R, a, b, c, rnd, offset = 0.0;
         
-        x=random(1)*rsig();
-        y=random(sqrt(1-pow(x,2)))*rsig();
-        z=sqrt(1-pow(x,2)-pow(y,2))*rsig();
+        double x = 0.0;
+        double y = 0.0;
+        double z = 0.0;
+        
+        a=random(1)*rsig(0);
+        b=random(sqrt(1-pow(a,2)))*rsig(0);
+        c=sqrt(1-pow(a,2)-pow(b,2))*rsig(0);
+        
+        rnd=random(6);
+        
+        if(rnd>0 && rnd<1)
+            {x=a;
+            y=b;
+            z=c;}
+        
+        if(rnd>=1 && rnd<2)
+            {y=a;
+            x=b;
+            z=c;}
+        
+        if(rnd>=2 && rnd<3)
+            {y=a;
+            z=b;
+            x=c;}
+        
+        if(rnd>=3 && rnd<4)
+            {z=a;
+            y=b;
+            x=c;}
+        
+        if(rnd>=4 && rnd<5)
+            {z=a;
+            x=b;
+            y=c;}
+        
+        if(rnd>=5 && rnd<6)
+            {x=a;
+            z=b;
+            y=c;}
         
         if(Ext==1)
-        {offset=minExt;}
+            {offset=minExt;}
         
         if(Ext==2)
             {while (offset<minExt)
                 {offset=random(maxExt);}
             }
         
-        x1=(x*RLS+xLS)+offset*rsig();
-        y1=(y*RLS+xLS)+offset*rsig();
-        z1=(z*RLS+xLS)+offset*rsig();
+        x1=(x*RLS+xLS)+offset*rsig(1);
+        y1=(y*RLS+xLS)+offset*rsig(1);
+        z1=(z*RLS+xLS)+offset*rsig(1);
         R=RSSmin+random(RSSmax-RSSmin);
         
 
@@ -301,18 +340,13 @@ void createNew(){
 
 
 double random(double MaxValue)
-{   if(randType==false)
-        {srand(time(0));}
-	double b= ((double)rand() / ((double)(RAND_MAX)+(double)(1))) * MaxValue;
+{  	double b= ((double)rand() / ((double)(RAND_MAX)+(double)(1))) * MaxValue;
 	return b;
 }
 
-int rsig()
-{   if(sigExt==true)
-        {
-            if(randType==false)
-                {srand(time(0));}
-            double b= ((double)rand() / ((double)(RAND_MAX)+(double)(1)));
+int rsig(bool a)
+{   if(sigExt==true || a==false)
+        {double b= ((double)rand() / ((double)(RAND_MAX)+(double)(1)));
             if (b<0.5)
                 {return -1;}
             else
