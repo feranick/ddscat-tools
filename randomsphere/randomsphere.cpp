@@ -2,7 +2,7 @@
 //
 //		randomsphere
 //
-//		v. 3.8-201309017
+//		v. 3.9-201309018
 //
 //		2013 - Nicola Ferralis - ferralis@mit.edu
 //
@@ -45,7 +45,7 @@ int rsig(bool a);
 
 
 
-char version[]="3.8-20130917-beta";
+char version[]="3.9-20130918";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="randsphere.txt";
@@ -227,6 +227,8 @@ int operate(char *namein)
     //////////////////////////////////////////////////////////
     
     int nSS=0;
+    double lowestx = 0.0;
+    
     while(nSS <numSS){
         
         double x1, y1, z1, R, a, b, c, rnd, offset = 0.0;
@@ -284,6 +286,8 @@ int operate(char *namein)
         z1=(z*RLS+xLS)+offset*rsig(1);
         R=RSSmin+random(RSSmax-RSSmin);
         
+        if(lowestx<x1+R)
+            {lowestx=x1+R;}
 
         if (randComp==true) {
             compSS=0;
@@ -294,6 +298,8 @@ int operate(char *namein)
         outfile<<"\t"<<x1<<"\t"<<y1<<"\t"<<z1<<"\t"<<R<<"\t"<<compSS<<"\t"<<compSS<<"\t"<<compSS<<"\t0\t0\t0\n";
         nSS++;
         }
+    
+    cout<<"\n X coordinate for the lowest of the SS: "<<lowestx<<"\n";
     
     //////////////////////////////////////////////////////////
     
