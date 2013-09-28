@@ -2,7 +2,7 @@
 //
 //		randomsphere
 //
-//		v. 3.9-201309018
+//		v. 4.0-201309028
 //
 //		2013 - Nicola Ferralis - ferralis@mit.edu
 //
@@ -45,7 +45,7 @@ int rsig(bool a);
 
 
 
-char version[]="3.9-20130918";
+char version[]="4.0-20130928";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="randsphere.txt";
@@ -282,8 +282,8 @@ int operate(char *namein)
             }
         
         x1=(x*RLS+xLS)+offset*rsig(1);
-        y1=(y*RLS+xLS)+offset*rsig(1);
-        z1=(z*RLS+xLS)+offset*rsig(1);
+        y1=(y*RLS+yLS)+offset*rsig(1);
+        z1=(z*RLS+zLS)+offset*rsig(1);
         R=RSSmin+random(RSSmax-RSSmin);
         
         if(lowestx<x1+R)
