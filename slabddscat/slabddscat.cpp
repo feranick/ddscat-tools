@@ -2,12 +2,12 @@
 //
 //		slabddscat
 //
-//		v. 4.1-20130912
+//		v. 4.2-20131005
 //
-//		2013 - Nicola Ferralis - ferralis@mit.edu
+//		Copyright (C) 2013 - Nicola Ferralis - ferralis@mit.edu
 //
 //		Create slabs out of adjacent spheres to be used in DDSCAT
-//		in the framework of "Spheres"
+//		in the framework of "Spheres - SPH"
 //
 //
 //		This program (source code and binaries) is free software;
@@ -41,10 +41,11 @@ using namespace std;
 int operate(char *namein);
 void createNew();
 
-char version[]="4.1-20130912";
+char version[]="4.2-20131005";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="slab_ddscat.txt";
+int maxNumSpheres = 4096;  //max number of spheres allowed by SPH_ANI_N in DDSCAT
 
 
 int main(int argc, char *argv[])
@@ -154,8 +155,8 @@ int operate(char *namein)
         cout<<X<<"\t"<<ymin<<"\t"<<ymax;
         cout<<"\t"<<zmin<<"\t"<<zmax<<"\t"<<R<<"\t"<<prec<<"\t";
     
-        zpoints = (int) (zmax- zmin)/ prec;
-        ypoints = (int) (ymax- ymin)/ prec;
+        zpoints = (int) ((zmax- zmin)/ prec);
+        ypoints = (int) ((ymax- ymin)/ prec);
         cout<<zpoints<<"\t"<<ypoints<<"\n";
 
         numSpheres += (zpoints+1)*(ypoints+1);
@@ -188,7 +189,13 @@ int operate(char *namein)
     cout<<"\n Saved in: "<<outname;
     delete outname;
     
-    cout<<"\n\n Number of spheres included slab saved: "<<numSpheres<<"\n\n";
+    cout<<"\n\n Number of spheres included slab saved: "<<numSpheres<<"\n";
+    if(numSpheres>maxNumSpheres)
+        {cout<<" Warning: the number of spheres exceed that allowed by DDSCAT 7.3 (4096)\n";}
+    
+    cout<<endl;
+
+        
 return 0;}
            
            
