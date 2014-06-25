@@ -2,9 +2,9 @@
 //
 //		randomsphere
 //
-//		v. 4.0-201309028
+//		v. 4.1-20140625
 //
-//		2013 - Nicola Ferralis - ferralis@mit.edu
+//		2013-2014 - Nicola Ferralis - ferralis@mit.edu
 //
 //		Create slabs out of adjacent spheres to be used in DDSCAT
 //		in the framework of "Spheres"
@@ -45,7 +45,7 @@ int rsig(bool a);
 
 
 
-char version[]="4.0-20130928";
+char version[]="4.1-20140625";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="randsphere.txt";
@@ -195,7 +195,7 @@ int operate(char *namein)
 
     infile.close();
     
-    char* outname = new char[strlen(namein)+1];    
+    char* outname = new char[strlen(namein)+2];
     
     if(targfile==false) {
         sprintf(outname,"%s%s",extension,namein);
@@ -307,7 +307,7 @@ int operate(char *namein)
   
  
     cout<<"\n Saved in: "<<outname;
-    delete outname;
+    delete [] outname;
 
     if(LS==false)
         {cout<<"\n\n Number of random spheres created: "<<numSS<<"\n\n";}

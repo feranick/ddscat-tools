@@ -1,0 +1,12 @@
+# radius of the projecting beam (0.482 um for 633 nm laser, N.A.-0.8)
+0.482
+# Perform on full grid (1: YES; 0:NO - specify details below)
+1
+# ymin
+-1.5
+# ymax
+1.5
+# zmin
+-1.5
+# zmax
+1.5

@@ -2,9 +2,9 @@
 //
 //		slabddscat
 //
-//		v. 4.2-20131005
+//		v. 4.3-20140625
 //
-//		Copyright (C) 2013 - Nicola Ferralis - ferralis@mit.edu
+//		Copyright (C) 2013-2014 - Nicola Ferralis - ferralis@mit.edu
 //
 //		Create slabs out of adjacent spheres to be used in DDSCAT
 //		in the framework of "Spheres - SPH"
@@ -41,7 +41,7 @@ using namespace std;
 int operate(char *namein);
 void createNew();
 
-char version[]="4.2-20131005";
+char version[]="4.3-20140625";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="slab_ddscat.txt";
@@ -88,7 +88,7 @@ int operate(char *namein)
     
     cout<<"\n Layer\tcomp\tx\tymin\tymax\tzmin\tzmax\tradius\tprec\tzpnts\typnts\n";
 
-    char* outname = new char[strlen(namein)+1];    
+    char* outname = new char[strlen(namein)+2];
     
     if(targfile==false) {
         sprintf(outname,"%s%s",extension,namein);
@@ -187,7 +187,7 @@ int operate(char *namein)
     infile.close();
  
     cout<<"\n Saved in: "<<outname;
-    delete outname;
+    delete [] outname;
     
     cout<<"\n\n Number of spheres included slab saved: "<<numSpheres<<"\n";
     if(numSpheres>maxNumSpheres)
