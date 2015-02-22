@@ -1,5 +1,5 @@
 ==========================
-DDSCAT-tools (2014.06.25)
+DDSCAT-tools (2015.02.22)
 ==========================
 
 Utilities for the Discrete Dipole Approximation method implemented in the software DDSCAT:
