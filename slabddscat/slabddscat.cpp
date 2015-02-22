@@ -116,7 +116,7 @@ int operate(char *namein)
     for (int n=0; n<numLayer; n++) {
         
         
-        if(getline(infile, line)==true)
+        if(getline(infile, line)==0)
             {cout<<"\n Only "<<n<<" slabs with defined parameters were written.\n";
                 break;}
         
