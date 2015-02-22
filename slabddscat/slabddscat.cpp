@@ -2,7 +2,7 @@
 //
 //		slabddscat
 //
-//		v. 4.3-20140625
+//		v. 4.3.1-20150222
 //
 //		Copyright (C) 2013-2014 - Nicola Ferralis - ferralis@mit.edu
 //
@@ -41,7 +41,7 @@ using namespace std;
 int operate(char *namein);
 void createNew();
 
-char version[]="4.3-20140625";
+char version[]="4.3.1-20150222";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="slab_ddscat.txt";
