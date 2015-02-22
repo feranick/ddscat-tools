@@ -1,14 +1,12 @@
 # use "gcc" to compile source files.
-#CC = g++
-CC = g++-mp-4.8
+CC = g++
 # the linker is also "gcc". It might be something else with other compilers.
-#LD = g++
-LD = g++-mp-4.8
+LD = g++
 # Compiler flags go here.
-CFLAGS = -Wall -O3 -fopenmp 
+CFLAGS = -Wall -O3  
 # Linker flags go here. Currently there aren't any, but if we'll switch to
 # code optimization, we might add "-s" here to strip debug info and symbols.
-LDFLAGS = -Wall -O3 -fopenmp
+LDFLAGS = -Wall -O3 
 # use this command to erase files.
 RM = rm -f 
 # list of souces
@@ -24,7 +22,7 @@ DIR = /usr/local/bin/
 CD = cd
 
 # program executable file name.
-PROG = runavconv
+PROG = runav
 
 # top-level rule, to compile everything.
 all: $(PROG)
