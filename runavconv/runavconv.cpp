@@ -2,7 +2,7 @@
 //
 //		runavconv
 //
-//		v. 3.3-20140625
+//		v. 3.4-20150223
 //
 //		Copyright (C) 2013 - Nicola Ferralis - ferralis@mit.edu
 //
@@ -42,7 +42,7 @@ int operate(char *namein, char *nameinfo);
 void createNew();
 
 
-char version[]="3.3-20140625";
+char version[]="3.4-20150223";
 char extension2[]="um.csv";
 char nameout[]="info.txt";
 
@@ -294,7 +294,7 @@ int operate(char *namein, char *nameinfo)
     delete[] convolution;
  
     cout<<"\n Saved in: "<<outname;
-    delete outname;
+    delete[] outname;
     
     
     cout<<"\n\n";
