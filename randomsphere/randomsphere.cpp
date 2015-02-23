@@ -43,8 +43,6 @@ void createNew();
 double random(double MaxValue);
 int rsig(bool a);
 
-
-
 char version[]="4.1-20140625";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
@@ -342,8 +340,6 @@ void createNew(){
     cout<<"\n Saved in: "<<nameout<<"\n\n";
 
 }
-
-
 
 double random(double MaxValue)
 {  	double b= ((double)rand() / ((double)(RAND_MAX)+(double)(1))) * MaxValue;
