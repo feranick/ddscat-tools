@@ -2,7 +2,7 @@
 //
 //		slabddscat
 //
-//		v. 4.3.1-20150222
+//		v. 4.4-20150223
 //
 //		Copyright (C) 2013-2014 - Nicola Ferralis - ferralis@mit.edu
 //
@@ -41,7 +41,7 @@ using namespace std;
 int operate(char *namein);
 void createNew();
 
-char version[]="4.3.1-20150222";
+char version[]="4.4-20150223";
 char extension[]="dds.";
 char extensiontarg[]=".targ";
 char nameout[]="slab_ddscat.txt";
@@ -85,21 +85,11 @@ int operate(char *namein)
 		return 0;}
     
     cout<<"\n Creating slab from: "<<namein<<"\n";
-    
     cout<<"\n Layer\tcomp\tx\tymin\tymax\tzmin\tzmax\tradius\tprec\tzpnts\typnts\n";
-
     char* outname = new char[strlen(namein)+2];
-    
-    if(targfile==false) {
-        sprintf(outname,"%s%s",extension,namein);
-    }
-    
-    else {
-        sprintf(outname, "%.*s%s", (int)  strlen(namein)-4, namein,extensiontarg);
-    }
+	
+	sprintf(outname, "%.*s%s", (int)  strlen(namein)-4, namein,extensiontarg);
     ofstream outfile(outname);
-    
-    
     string line;
     
     getline(infile, line);
@@ -109,9 +99,6 @@ int operate(char *namein)
     getline(infile, line);
     getline(infile, line);
     numLayer=(int) atof(line.c_str());
-    
-    
-    
     
     for (int n=0; n<numLayer; n++) {
         
